@@ -36,8 +36,11 @@ class PhotoDetailViewController: UIViewController {
     }
     */
     @IBAction func addPhoto(_ sender: Any) {
+    
     }
+    
     @IBAction func savePhoto(_ sender: Any) {
+    
     }
     
 }

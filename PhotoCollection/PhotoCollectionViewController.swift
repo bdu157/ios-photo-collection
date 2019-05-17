@@ -11,6 +11,10 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class PhotoCollectionViewController: UICollectionViewController {
+    
+    let photoController = PhotoController()
+    let themeHelper = ThemeHelper()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,25 +40,38 @@ class PhotoCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return photoController.photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PhotoCollectionViewCell
+            let photo = self.photoController.photos[indexPath.row]
+            cell.photo?.imageData = photo.imageData
+            cell.photo?.title = photo.title
+            return cell
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToPhotoDetailVC" {
+            guard let destVC = segue.destination as? PhotoDetailViewController else {return}
+                destVC.themeHelper = themeHelper
+                destVC.photoController = photoController
+        } else if segue.identifier == "ToPhotoDetailVCfromCell" {
+            guard let destVC = segue.destination as? PhotoDetailViewController,
+                let indexPath = collectionView.indexPathsForSelectedItems?.first else {return}
+                destVC.themeHelper = themeHelper
+                destVC.photoController = photoController
+                destVC.photo = photoController.photos[indexPath.item]
+        } else if segue.identifier == "ToThemeSelectionVC" {
+            guard let destVC = segue.destination as? ThemeSelectionViewController else {return}
+                destVC.themeHelper = themeHelper
+        }
+    }
+    
+    
     // MARK: UICollectionViewDelegate
 
     /*
@@ -85,5 +102,13 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     }
     */
+    func setTheme() {
+        guard let themePreference = themeHelper.themePreference else {return}
+        if themePreference == "Dark" {
+            self.collectionView.backgroundColor = .gray
+        } else if themePreference == "Orange" {
+            self.collectionView.backgroundColor = .orange
+        }
+    }
 
 }
