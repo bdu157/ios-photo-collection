@@ -47,10 +47,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B0B6171228E8F94009F4AAA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B0B6163228E4605009F4AAA /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B0B6172228E8F9E009F4AAA /* ModelController */ = {
+			isa = PBXGroup;
+			children = (
+				0B0B6165228E4668009F4AAA /* PhotoController.swift */,
+			);
+			path = ModelController;
+			sourceTree = "<group>";
+		};
+		0B0B6173228E8FB4009F4AAA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B0B6169228E550D009F4AAA /* PhotoCollectionViewController.swift */,
+				0B0B616D228E5C9C009F4AAA /* PhotoDetailViewController.swift */,
+				0B0B616F228E5F5E009F4AAA /* ThemeSelectionViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0B0B6174228E8FCD009F4AAA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0BBD9268228D330000C93F8F /* AppDelegate.swift */,
+				0BBD926F228D330200C93F8F /* Assets.xcassets */,
+				0BBD9274228D330200C93F8F /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0B0B6175228E8FEB009F4AAA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0BBD926C228D330000C93F8F /* Main.storyboard */,
+				0BBD9271228D330200C93F8F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		0BBD925C228D330000C93F8F = {
 			isa = PBXGroup;
 			children = (
 				0BBD9267228D330000C93F8F /* PhotoCollection */,
+				0B0B6174228E8FCD009F4AAA /* Resources */,
 				0BBD9266228D330000C93F8F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,18 +112,12 @@
 		0BBD9267228D330000C93F8F /* PhotoCollection */ = {
 			isa = PBXGroup;
 			children = (
-				0BBD9268228D330000C93F8F /* AppDelegate.swift */,
-				0BBD926C228D330000C93F8F /* Main.storyboard */,
-				0BBD926F228D330200C93F8F /* Assets.xcassets */,
-				0BBD9271228D330200C93F8F /* LaunchScreen.storyboard */,
-				0BBD9274228D330200C93F8F /* Info.plist */,
-				0B0B6163228E4605009F4AAA /* Photo.swift */,
-				0B0B6165228E4668009F4AAA /* PhotoController.swift */,
-				0B0B6167228E4821009F4AAA /* ThemeHelper.swift */,
-				0B0B6169228E550D009F4AAA /* PhotoCollectionViewController.swift */,
+				0B0B6175228E8FEB009F4AAA /* Storyboards */,
+				0B0B6171228E8F94009F4AAA /* Model */,
+				0B0B6172228E8F9E009F4AAA /* ModelController */,
+				0B0B6173228E8FB4009F4AAA /* ViewControllers */,
 				0B0B616B228E5BDB009F4AAA /* PhotoCollectionViewCell.swift */,
-				0B0B616D228E5C9C009F4AAA /* PhotoDetailViewController.swift */,
-				0B0B616F228E5F5E009F4AAA /* ThemeSelectionViewController.swift */,
+				0B0B6167228E4821009F4AAA /* ThemeHelper.swift */,
 			);
 			path = PhotoCollection;
 			sourceTree = "<group>";
@@ -308,7 +348,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C22Z4773SH;
-				INFOPLIST_FILE = PhotoCollection/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,7 +366,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C22Z4773SH;
-				INFOPLIST_FILE = PhotoCollection/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
