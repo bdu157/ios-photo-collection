@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -70,7 +71,7 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
             guard let photo  = photo else {return}
             photoController?.updatePhoto(for: photo, updateImageDataTo: photoData, updateTitleTo: title)
         }
-        self.navigationController?.popViewController(animated: true)
+            navigationController?.popToRootViewController(animated: true)
     }
     
     func setTheme() {
@@ -101,10 +102,10 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
-        guard let image = info[Privacy - Photo, MTLLibrary Usage Description] as? UIImage else { return }
+        guard let image = info[.originalImage] as? UIImage else { return }
         imageView.image = image
         
     }
