@@ -18,17 +18,12 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     var photoController: PhotoController?
     var photo: Photo?
-    var themeHelper: ThemeHelper? {
-        didSet {
-            loadViewIfNeeded()
-            updateViews()
-        }
-    }
+    var themeHelper: ThemeHelper?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews()
         // Do any additional setup after loading the view.
+        updateViews()
     }
     
 
@@ -67,6 +62,7 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
             let photoData = photoImage.jpegData(compressionQuality: 1.0) else {return}
         if photo == nil {
             photoController?.createPhoto(photoImage: photoData, title: title)
+            navigationController?.popToRootViewController(animated: true)
         } else {
             guard let photo  = photo else {return}
             photoController?.updatePhoto(for: photo, updateImageDataTo: photoData, updateTitleTo: title)
@@ -86,10 +82,13 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     func updateViews() {
         setTheme()
-        guard let photoInput = photo?.imageData,
-            let titleInput = photo?.title else {return}
-            self.imageView.image = UIImage(data: photoInput)
-            self.textField.text = titleInput
+        if let photo = photo {
+            navigationItem.title = "Edit Photo"
+            self.imageView.image = UIImage(data: photo.imageData)
+            self.textField.text = photo.title
+        } else {
+            navigationItem.title = "Create Photo"
+        }
     }
     
     func presentImagePickerController() {
