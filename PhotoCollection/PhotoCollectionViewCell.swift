@@ -16,6 +16,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var themeHelper: ThemeHelper?
     
     
     @IBOutlet weak var imageView: UIImageView!
@@ -28,4 +29,5 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         self.imageView.image = UIImage(data: photoData)
         self.label.text = title
     }
+    
 }

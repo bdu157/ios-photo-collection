@@ -82,10 +82,11 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     func updateViews() {
         setTheme()
-        if let photo = photo {
+        if let photoInput = photo?.imageData,
+            let title = photo?.title {
             navigationItem.title = "Edit Photo"
-            self.imageView.image = UIImage(data: photo.imageData)
-            self.textField.text = photo.title
+            self.imageView.image = UIImage(data: photoInput)
+            self.textField.text = title
         } else {
             navigationItem.title = "Create Photo"
         }

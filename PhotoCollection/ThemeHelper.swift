@@ -11,6 +11,7 @@ import UIKit
 
 class ThemeHelper {
     
+    var photoController = PhotoController()
     
     init() {}
     
