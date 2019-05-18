@@ -18,24 +18,13 @@ class PhotoCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setTheme()
+        collectionView.reloadData()
 }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -44,10 +33,9 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PhotoCollectionViewCell
-            let photo = self.photoController.photos[indexPath.item]
-            cell.photo?.imageData = photo.imageData
-            cell.photo?.title = photo.title
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
+            let photo = self.photoController.photos[indexPath.row]
+            cell.photo = photo
             return cell
     }
 
@@ -71,8 +59,8 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     func setTheme() {
         guard let themePreference = themeHelper.themePreference else {return}
-        if themePreference == "Dark" {
-            self.collectionView.backgroundColor = .gray
+        if themePreference == "Cyan" {
+            self.collectionView.backgroundColor = .cyan
         } else if themePreference == "Orange" {
             self.collectionView.backgroundColor = .orange
         }

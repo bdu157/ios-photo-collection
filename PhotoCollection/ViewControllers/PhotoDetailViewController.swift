@@ -61,7 +61,7 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-    @IBAction func savePhoto(_ sender: Any) {
+    @IBAction func saveButton(_ sender: Any) {
         guard let photoImage = imageView.image,
             let title = textField.text,
             let photoData = photoImage.jpegData(compressionQuality: 1.0) else {return}
@@ -73,11 +73,12 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
         }
             navigationController?.popToRootViewController(animated: true)
     }
+
     
     func setTheme() {
         guard let themePreference = themeHelper?.themePreference else {return}
-        if themePreference == "Dark" {
-            self.view.backgroundColor = .gray
+        if themePreference == "Cyan" {
+            self.view.backgroundColor = .cyan
         } else if themePreference == "Orange" {
             self.view.backgroundColor = .orange
         }
@@ -85,10 +86,10 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
     
     func updateViews() {
         setTheme()
-        guard let photo = photo else {return}
-        let image = UIImage(data: photo.imageData)
-            imageView.image = image
-        
+        guard let photoInput = photo?.imageData,
+            let titleInput = photo?.title else {return}
+            self.imageView.image = UIImage(data: photoInput)
+            self.textField.text = titleInput
     }
     
     func presentImagePickerController() {

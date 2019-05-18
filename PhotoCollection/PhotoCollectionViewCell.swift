@@ -9,6 +9,7 @@
 import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
+    
     var photo: Photo? {
         didSet {
             updateViews()
@@ -16,13 +17,15 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     
     func updateViews() {
-        guard let photo = photo else {return}
-        imageView.image = UIImage(data: photo.imageData)
-        label.text = photo.title
+        guard let photoData = photo?.imageData,
+            let title = photo?.title else {return}
+        self.imageView.image = UIImage(data: photoData)
+        self.label.text = title
     }
 }
