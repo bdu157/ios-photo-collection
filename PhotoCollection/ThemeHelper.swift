@@ -10,10 +10,13 @@ import Foundation
 import UIKit
 
 class ThemeHelper {
+
     
-    var photoController = PhotoController()
-    
-    init() {}
+    init() {
+        if themePreference != "Cyan" && themePreference != "Orange" {
+            setThemePreferenceToDark()
+        }
+    }
     
     func setThemePreferenceToDark() {
         let userDefaults = UserDefaults.standard
